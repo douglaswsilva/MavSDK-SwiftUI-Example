@@ -20,8 +20,6 @@ final class ActionViewModel: ObservableObject {
     
     func armAction() {
         drone.action.arm()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Armed"
             } onError: { (error) in
@@ -32,8 +30,6 @@ final class ActionViewModel: ObservableObject {
     
     func disarmAction() {
         drone.action.disarm()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Disarmed"
             } onError: { (error) in
@@ -44,8 +40,6 @@ final class ActionViewModel: ObservableObject {
     
     func takeOffAction() {
         drone.action.takeoff()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Taking Off"
             } onError: { (error) in
@@ -56,8 +50,6 @@ final class ActionViewModel: ObservableObject {
     
     func landAction() {
         drone.action.land()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Landing"
             } onError: { (error) in
@@ -68,8 +60,6 @@ final class ActionViewModel: ObservableObject {
     
     func rtlAction() {
         drone.action.returnToLaunch()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "RTL"
             } onError: { (error) in
@@ -80,13 +70,11 @@ final class ActionViewModel: ObservableObject {
     
     func setRTLAltitude() {
         drone.action.setReturnToLaunchAltitude(relativeAltitudeM: 40)
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
-            .subscribe {
+            .subscribe(onCompleted: {
                 self.messageViewModel.message = "Set RTL Altitude"
-            } onError: { (error) in
+            }, onError: { (error) in
                 self.messageViewModel.message = "Error Setting RTL Altitude"
-            }
+            })
             .disposed(by: disposeBag)
     }
 }

@@ -23,10 +23,11 @@ final class CameraViewModel: ObservableObject {
             Action(text: "Start Video Recording", action: startVideo),
             Action(text: "Stop Video Recoding", action: stopVideo),
             Action(text: "List of Photos", action: getListOfPhotos),
+            Action(text: "Format Storage", action: formatStorage),
             Action(text: "Start Video Streaming", action: startVideoStreaming),
             Action(text: "Stop Video Streaming", action: stopVideoStreaming),
-            Action(text: "Subscribe Camera Mode", action: mode),
-            Action(text: "Subscribe Camera Status", action: status)
+            Action(text: "Subscribe Camera Mode", action: subscribeCameraMode),
+            Action(text: "Subscribe Camera Status", action: subscribeCameraStatus)
         ]
     }
     
@@ -35,8 +36,6 @@ final class CameraViewModel: ObservableObject {
     
     func setPhotoMode() {
         drone.camera.setMode(mode: .photo)
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Set to Photo Mode"
             } onError: { (error) in
@@ -47,8 +46,6 @@ final class CameraViewModel: ObservableObject {
     
     func setVideoMode() {
         drone.camera.setMode(mode: .video)
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Set to Video Mode"
             } onError: { (error) in
@@ -59,8 +56,6 @@ final class CameraViewModel: ObservableObject {
     
     func takePhoto() {
         drone.camera.takePhoto()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Photo Taken"
             } onError: { (error) in
@@ -71,8 +66,6 @@ final class CameraViewModel: ObservableObject {
     
     func starTakingPhotos() {
         drone.camera.startPhotoInterval(intervalS: 1.0)
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Start Taking Photos"
             } onError: { (error) in
@@ -83,8 +76,6 @@ final class CameraViewModel: ObservableObject {
     
     func stopTakingPhotos() {
         drone.camera.stopPhotoInterval()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Stop Taking Photos"
             } onError: { (error) in
@@ -95,8 +86,6 @@ final class CameraViewModel: ObservableObject {
     
     func startVideo() {
         drone.camera.startVideo()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Start Video Recording"
             } onError: { (error) in
@@ -107,8 +96,6 @@ final class CameraViewModel: ObservableObject {
     
     func stopVideo() {
         drone.camera.stopVideo()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Stop Video Recording"
             } onError: { (error) in
@@ -119,8 +106,6 @@ final class CameraViewModel: ObservableObject {
     
     func getListOfPhotos() {
         drone.camera.listPhotos(photosRange: .all)
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .do(onSuccess: { (captureInfo) in
                 self.messageViewModel.message = "List Count \(captureInfo.count)"
             }, onError: { (error) in
@@ -132,10 +117,18 @@ final class CameraViewModel: ObservableObject {
             .disposed(by: disposeBag)
     }
     
+    func formatStorage() {
+        drone.camera.formatStorage()
+            .subscribe {
+                self.messageViewModel.message = "Format Storage"
+            } onError: { (error) in
+                self.messageViewModel.message = "Error Formatting Storage"
+            }
+            .disposed(by: disposeBag)
+    }
+    
     func startVideoStreaming() {
         drone.camera.startVideoStreaming()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Start Video Streaming"
             } onError: { (error) in
@@ -146,8 +139,6 @@ final class CameraViewModel: ObservableObject {
     
     func stopVideoStreaming() {
         drone.camera.stopVideoStreaming()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Stop Video Streaming"
             } onError: { (error) in
@@ -157,22 +148,7 @@ final class CameraViewModel: ObservableObject {
     }
     
     func subscribeCameraMode() {
-        drone.camera.stopVideoStreaming()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
-            .subscribe {
-                self.messageViewModel.message = "Stop Video Streaming"
-            } onError: { (error) in
-                self.messageViewModel.message = "Error Stopping Video Streaming"
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    func mode() {
         drone.camera.mode
-            .distinctUntilChanged()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { value in
                 print("+DC+ camera mode: \(value)")
             }, onError: { error in
@@ -181,11 +157,8 @@ final class CameraViewModel: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    func status() {
+    func subscribeCameraStatus() {
         drone.camera.status
-            .distinctUntilChanged()
-            .subscribeOn(MavScheduler)
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { value in
                 print("+DC+ camera status: \(value)")
             }, onError: { error in

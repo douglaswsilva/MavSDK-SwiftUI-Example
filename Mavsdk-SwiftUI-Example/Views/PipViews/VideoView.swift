@@ -9,8 +9,11 @@ import SwiftUI
 
 struct VideoView: View {
     var body: some View {
-        VideoPlayerView() // Anotacao
-//        Rectangle().foregroundColor(.blue)
+        if isSimulator {
+            Rectangle().foregroundColor(.gray)
+        } else {
+            VideoPlayerView() // Anotacao
+        }
     }
 }
 

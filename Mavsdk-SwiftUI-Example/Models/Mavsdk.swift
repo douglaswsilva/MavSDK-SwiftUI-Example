@@ -11,10 +11,10 @@ import MavsdkServer
 import RxSwift
 
 let MavScheduler = ConcurrentDispatchQueueScheduler(qos: .default)
-let isSimulator = false
+let isSimulator = true
 
 class Mavsdk: ObservableObject {
-    static let sharedInstance = Mavsdk(cloudSimIP: "3.227.211.180")
+    static let sharedInstance = Mavsdk(cloudSimIP: "3.237.22.180")
     
     var drone: Drone
     var mavsdkServer = MavsdkServer()

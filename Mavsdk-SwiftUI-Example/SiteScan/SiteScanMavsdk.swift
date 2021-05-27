@@ -20,15 +20,11 @@ class SiteScanMavsdk: ObservableObject {
         addObservers()
     }
     
-    func disposeAll() {
-        disposeBag = DisposeBag()
-    }
-    
     // MARK: - Add Observers
     func addObservers() {
-//        coreObservers()
-//        telemetryObservers()
-//        infoObservers()
+        coreObservers()
+        telemetryObservers()
+        infoObservers()
         cameraObservers()
     }
     

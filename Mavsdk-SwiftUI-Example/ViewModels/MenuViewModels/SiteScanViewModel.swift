@@ -16,12 +16,22 @@ final class SiteScanViewModel: ObservableObject {
     
     init() {}
     
+    // -- Order of Checks --
+    // stopPhotoInterval
+    // takePhoto
+    // listPhotos
+    // continueWithoutLinkCheck()
+    // setReturnToLaunchAfterMission
+    // cancelMissionDownload
+    // cancelMissionUpload
+    // uploadMission
+    // setReturnToLaunchAltitude
+    // setCurrentMissionItem
+    // arm
+    // startMission
+    
     func subscribeToAllSiteScan() {
         siteScan = SiteScanMavsdk()
-    }
-    
-    func disposeAll() {
-        siteScan?.disposeAll()
     }
     
     func preflightCheckListQueue() {
@@ -32,29 +42,16 @@ final class SiteScanViewModel: ObservableObject {
         ])
         
         routine
+            .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
             .do(onError: { (error) in
                 print("PreFli: Error \(error)")
             }, onCompleted: {
                 print("PreFli: Mission Started!")
-            }, onSubscribed: {
+            }, onSubscribe: {
                 print("PreFli: Checking...")
             })
             .subscribe()
             .disposed(by: disposeBag)
-
-        // -- Order of things --
-        // stopPhotoInterval
-        // takePhoto
-        // listPhotos
-        // continueWithoutLinkCheck()
-        // setReturnToLaunchAfterMission
-        // cancelMissionDownload
-        // cancelMissionUpload
-        // uploadMission
-        // setReturnToLaunchAltitude
-        // setCurrentMissionItem
-        // arm
-        // startMission
     }
     
     func aircraftCheck() {
@@ -63,11 +60,13 @@ final class SiteScanViewModel: ObservableObject {
     
     func cameraCheck() -> Completable {
         let stopPhotoInterval = drone.camera.stopPhotoInterval().do(onSubscribed: { print("PreFli: stopPhotoInterval") })
+        let setPhotoMode = drone.camera.setMode(mode: .photo).do(onSubscribed: { print("PreFli: setPhotoMode") })
         let takePhoto = drone.camera.takePhoto().do(onSubscribed: { print("PreFli: takePhoto") })
         let listPhotos = drone.camera.listPhotos(photosRange: .sinceConnection).asCompletable().do(onSubscribed: { print("PreFli: listPhotos") })
         
         return Completable.concat([
             stopPhotoInterval,
+            setPhotoMode,
             takePhoto,
             listPhotos
         ])
@@ -122,8 +121,6 @@ extension SiteScanViewModel {
                 print("PreFli: finished uploadMission")
             }, onSubscribe: {
                 print("PreFli: start uploadMission")
-            }, onSubscribed: {
-                print("PreFli: uploadMission subscribed")
             })
         
         return Completable.concat([

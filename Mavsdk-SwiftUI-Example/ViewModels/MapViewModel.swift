@@ -25,6 +25,7 @@ final class MapViewModel: ObservableObject {
             .distinctUntilChanged({ (angle, position) in
                 Location(latitude: position.latitudeDeg, longitude: position.longitudeDeg, angle: Double(angle.yawDeg))
             })
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { (angle, position) in
                 self.droneLocation = Location(latitude: position.latitudeDeg, longitude: position.longitudeDeg, angle: Double(angle.yawDeg))
             }, onError: { (error) in
