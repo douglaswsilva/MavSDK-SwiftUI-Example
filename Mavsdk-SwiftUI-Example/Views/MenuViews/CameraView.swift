@@ -12,16 +12,10 @@ struct CameraView: View {
     var camera = CameraViewModel()
     
     var body: some View {
-        List {
-            ButtonContent(text: "Set Photo Mode", action: camera.setPhotoMode)
-            ButtonContent(text: "Set Video Mode", action: camera.setVideoMode)
-            ButtonContent(text: "Take Photo", action: camera.takePhoto)
-            ButtonContent(text: "Start Taking Photos", action: camera.starTakingPhotos)
-            ButtonContent(text: "Stop Taking Photos", action: camera.stopTakingPhotos)
-            ButtonContent(text: "Start Video Recording", action: camera.startVideo)
-            ButtonContent(text: "Stop Video Recoding", action: camera.stopVideo)
+        List(camera.actions, id: \.text) { action in
+            ButtonContent(text: action.text, action: action.action)
         }
-        .listStyle(PlainListStyle())
+        .listStyle(PlainListStyle())        
     }
 }
 

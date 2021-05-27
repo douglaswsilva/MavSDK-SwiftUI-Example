@@ -27,13 +27,31 @@ class PlayerUIView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
-        
-        addVideoFeed()
+        self.backgroundColor = .lightGray
+       
+        if isSimulator {
+            fetchVideoStream()
+        } else {
+            addVideoFeed("rtsp://192.168.43.1:58554/stream")
+        }
     }
     
-    func addVideoFeed() {
-
+    func fetchVideoStream() {
+        Mavsdk.sharedInstance.drone.camera.videoStreamInfo
+            .take(1)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { value in
+                if self.rtspView == nil {
+                    self.addVideoFeed(value.settings.uri)
+                }
+            }, onError: { error in
+                print("+DC+ camera videoStreamInfo error: \(String(describing: error))")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func addVideoFeed(_ videoPath: String) {
+        let newPath = videoPath.replacingOccurrences(of: "rtspt", with: "rtsp")
         rtspView = RTSPView(frame: self.frame)
         
         self.addSubview(rtspView)
@@ -43,7 +61,8 @@ class PlayerUIView: UIView {
         rtspView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         rtspView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
 
-        rtspView.startPlaying(videoPath: "rtsp://192.168.43.1:58554/stream", usesTcp: false)
+        self.rtspView.startPlaying(videoPath: newPath, usesTcp: isSimulator) // Anotacao: idk?
+//        self.rtspView.startPlaying(videoPath: "rtsp://192.168.43.1:58554/stream", usesTcp: false) // Anotacao: idk?
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +71,7 @@ class PlayerUIView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        rtspView.frame = bounds
+        rtspView?.frame = bounds
     }
 }
 

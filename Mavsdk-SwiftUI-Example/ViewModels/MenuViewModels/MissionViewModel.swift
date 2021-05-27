@@ -34,7 +34,7 @@ final class MissionViewModel: ObservableObject {
     
     func uploadMission() {
         drone.mission.uploadMission(missionPlan: SurveyMission.mission)
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribeOn(MavScheduler)
             .observeOn(MainScheduler.instance)
             .do(onError: { (error) in
                 self.messageViewModel.message = "Error Uploading Mission"
@@ -49,6 +49,8 @@ final class MissionViewModel: ObservableObject {
     
     func cancelUpload() {
         drone.mission.cancelMissionUpload()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Cancelled Mission Upload"
             } onError: { (error) in
@@ -59,6 +61,8 @@ final class MissionViewModel: ObservableObject {
     
     func startMission() {
         drone.mission.startMission()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Mission Started"
             } onError: { (error) in
@@ -69,6 +73,8 @@ final class MissionViewModel: ObservableObject {
     
     func pauseMission() {
         drone.mission.pauseMission()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Mission Paused"
             } onError: { (error) in
@@ -79,6 +85,8 @@ final class MissionViewModel: ObservableObject {
     
     func setIndex() {
         drone.mission.setCurrentMissionItem(index: 0)
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Current Index Set to 0"
             } onError: { (error) in
@@ -89,7 +97,7 @@ final class MissionViewModel: ObservableObject {
     
     func downloadMission() {
         drone.mission.downloadMission()
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribeOn(MavScheduler)
             .observeOn(MainScheduler.instance)
             .do(onSuccess: { (mission) in
                 self.messageViewModel.message = "Mission Downloaded with \(mission.missionItems.count) Items"
@@ -104,6 +112,8 @@ final class MissionViewModel: ObservableObject {
     
     func cancelMissionDownload() {
         drone.mission.cancelMissionDownload()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Cancelled Mission Download"
             } onError: { (error) in
@@ -114,6 +124,8 @@ final class MissionViewModel: ObservableObject {
     
     func clearMission() {
         drone.mission.clearMission()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "Mission Cleared"
             } onError: { (error) in
@@ -124,6 +136,8 @@ final class MissionViewModel: ObservableObject {
     
     func enableRTLAfterMission() {
         drone.mission.setReturnToLaunchAfterMission(enable: true)
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "RTL After Mission Enablec"
             } onError: { (error) in
@@ -134,6 +148,8 @@ final class MissionViewModel: ObservableObject {
     
     func disableRTLAfterMission() {
         drone.mission.setReturnToLaunchAfterMission(enable: false)
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe {
                 self.messageViewModel.message = "RTL After Mission Disabled"
             } onError: { (error) in
@@ -144,6 +160,8 @@ final class MissionViewModel: ObservableObject {
     
     func getRTLAfterMission() {
         drone.mission.getReturnToLaunchAfterMission()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe { value in
                 self.messageViewModel.message = "RTL After Mission Set To \(value)"
             } onError: { (error) in
@@ -154,6 +172,8 @@ final class MissionViewModel: ObservableObject {
     
     func isMissionFinished() {
         drone.mission.isMissionFinished()
+            .subscribeOn(MavScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe { value in
                 self.messageViewModel.message = value ? "Mission Finished" : "Mission Not Finished"
             } onError: { (error) in

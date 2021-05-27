@@ -17,6 +17,7 @@ struct ActionList: View {
             ButtonContent(text: "TakeOff", action: action.takeOffAction)
             ButtonContent(text: "Land", action: action.landAction)
             ButtonContent(text: "RTL", action: action.rtlAction)
+            ButtonContent(text: "Set RTL Altitude", action: action.setRTLAltitude)
         }
         .listStyle(PlainListStyle())
     }

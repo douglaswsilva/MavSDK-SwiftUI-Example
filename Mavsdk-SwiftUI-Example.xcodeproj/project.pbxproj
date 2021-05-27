@@ -28,8 +28,6 @@
 		A55F21DB264EEB3F00659CD9 /* Mavsdk in Frameworks */ = {isa = PBXBuildFile; productRef = A55F21DA264EEB3F00659CD9 /* Mavsdk */; };
 		A55F21DD264EEB3F00659CD9 /* MavsdkServer in Frameworks */ = {isa = PBXBuildFile; productRef = A55F21DC264EEB3F00659CD9 /* MavsdkServer */; };
 		A55F2207264EF68F00659CD9 /* FFmpeg-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A55F2206264EF68F00659CD9 /* FFmpeg-iOS */; };
-		A5B1757326587C980094E2D2 /* RTSPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54C35872656FDDB007678CD /* RTSPView.swift */; };
-		A5B1757726587DA60094E2D2 /* VideoStreamPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A54C35862656FDDB007678CD /* VideoStreamPlayer.m */; };
 		A5B1757C265882D60094E2D2 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B1757B265882D60094E2D2 /* VideoPlayerView.swift */; };
 		A5F70B92264DDDC20017AFC1 /* Mavsdk_SwiftUI_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F70B91264DDDC20017AFC1 /* Mavsdk_SwiftUI_ExampleApp.swift */; };
 		A5F70B94264DDDC20017AFC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F70B93264DDDC20017AFC1 /* ContentView.swift */; };
@@ -43,6 +41,8 @@
 		A5F7450E264F3A0900A64432 /* TelemetryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F7450D264F3A0900A64432 /* TelemetryViewModel.swift */; };
 		A5F74518264F40D000A64432 /* ActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F74517264F40D000A64432 /* ActionViewModel.swift */; };
 		A5FEFEFF26534E2E007A6FCC /* TelemetryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FEFEFE26534E2E007A6FCC /* TelemetryDetailView.swift */; };
+		C5E155E3265C698200D0A9FB /* VideoStreamPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E155E0265C698200D0A9FB /* VideoStreamPlayer.m */; };
+		C5E155E4265C698200D0A9FB /* RTSPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E155E1265C698200D0A9FB /* RTSPView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +64,6 @@
 
 /* Begin PBXFileReference section */
 		A53C5F592658559B0076CFF0 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
-		A54C35852656FDDA007678CD /* RtspClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RtspClient-Bridging-Header.h"; sourceTree = "<group>"; };
-		A54C35862656FDDB007678CD /* VideoStreamPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoStreamPlayer.m; sourceTree = "<group>"; };
-		A54C35872656FDDB007678CD /* RTSPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSPView.swift; sourceTree = "<group>"; };
-		A54C35882656FDDB007678CD /* VideoStreamPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoStreamPlayer.h; sourceTree = "<group>"; };
 		A54C358C2656FE13007678CD /* SiteScanMavsdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteScanMavsdk.swift; sourceTree = "<group>"; };
 		A54C359526571189007678CD /* SiteScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteScanViewModel.swift; sourceTree = "<group>"; };
 		A54C359A265712B3007678CD /* SurveyMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMission.swift; sourceTree = "<group>"; };
@@ -104,6 +100,10 @@
 		A5F7450D264F3A0900A64432 /* TelemetryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryViewModel.swift; sourceTree = "<group>"; };
 		A5F74517264F40D000A64432 /* ActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewModel.swift; sourceTree = "<group>"; };
 		A5FEFEFE26534E2E007A6FCC /* TelemetryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDetailView.swift; sourceTree = "<group>"; };
+		C5E155DF265C698200D0A9FB /* RtspClient-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RtspClient-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5E155E0265C698200D0A9FB /* VideoStreamPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStreamPlayer.m; sourceTree = "<group>"; };
+		C5E155E1265C698200D0A9FB /* RTSPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSPView.swift; sourceTree = "<group>"; };
+		C5E155E2265C698200D0A9FB /* VideoStreamPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStreamPlayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,12 +137,12 @@
 		A53C5F52265854A40076CFF0 /* MenuViews */ = {
 			isa = PBXGroup;
 			children = (
-				A54C35B126583136007678CD /* MissionView.swift */,
-				A54C35AC2657564A007678CD /* SiteScanView.swift */,
-				A54C35A2265755B0007678CD /* CameraView.swift */,
+				A55F21C7264E09BC00659CD9 /* MenuView.swift */,
 				A5F74508264F39EE00A64432 /* TelemetryView.swift */,
 				A55F21CC264E0F8100659CD9 /* ActionList.swift */,
-				A55F21C7264E09BC00659CD9 /* MenuView.swift */,
+				A54C35B126583136007678CD /* MissionView.swift */,
+				A54C35A2265755B0007678CD /* CameraView.swift */,
+				A54C35AC2657564A007678CD /* SiteScanView.swift */,
 			);
 			path = MenuViews;
 			sourceTree = "<group>";
@@ -161,10 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				A5F7450D264F3A0900A64432 /* TelemetryViewModel.swift */,
+				A5F74517264F40D000A64432 /* ActionViewModel.swift */,
 				A54C35B62658317E007678CD /* MissionViewModel.swift */,
 				A54C35A7265755C4007678CD /* CameraViewModel.swift */,
 				A54C359526571189007678CD /* SiteScanViewModel.swift */,
-				A5F74517264F40D000A64432 /* ActionViewModel.swift */,
 			);
 			path = MenuViewModels;
 			sourceTree = "<group>";
@@ -180,10 +180,10 @@
 		A54C35842656FDDA007678CD /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				A54C35872656FDDB007678CD /* RTSPView.swift */,
-				A54C35862656FDDB007678CD /* VideoStreamPlayer.m */,
-				A54C35852656FDDA007678CD /* RtspClient-Bridging-Header.h */,
-				A54C35882656FDDB007678CD /* VideoStreamPlayer.h */,
+				C5E155DF265C698200D0A9FB /* RtspClient-Bridging-Header.h */,
+				C5E155E1265C698200D0A9FB /* RTSPView.swift */,
+				C5E155E2265C698200D0A9FB /* VideoStreamPlayer.h */,
+				C5E155E0265C698200D0A9FB /* VideoStreamPlayer.m */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -431,13 +431,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E155E4265C698200D0A9FB /* RTSPView.swift in Sources */,
 				A54C35AD2657564A007678CD /* SiteScanView.swift in Sources */,
 				A5F74518264F40D000A64432 /* ActionViewModel.swift in Sources */,
 				A54C358D2656FE13007678CD /* SiteScanMavsdk.swift in Sources */,
 				A5F74504264F2B4E00A64432 /* PipViewModel.swift in Sources */,
 				A54C35A3265755B0007678CD /* CameraView.swift in Sources */,
 				A55F21C8264E09BC00659CD9 /* MenuView.swift in Sources */,
-				A5B1757326587C980094E2D2 /* RTSPView.swift in Sources */,
 				A5F70B94264DDDC20017AFC1 /* ContentView.swift in Sources */,
 				A55F21BB264DE61600659CD9 /* Mavsdk.swift in Sources */,
 				A54C359626571189007678CD /* SiteScanViewModel.swift in Sources */,
@@ -445,8 +445,8 @@
 				A53C5F5A2658559B0076CFF0 /* MessageViewModel.swift in Sources */,
 				A55F21B4264DE5BF00659CD9 /* MapView.swift in Sources */,
 				A5F7450E264F3A0900A64432 /* TelemetryViewModel.swift in Sources */,
-				A5B1757726587DA60094E2D2 /* VideoStreamPlayer.m in Sources */,
 				A54C35A8265755C4007678CD /* CameraViewModel.swift in Sources */,
+				C5E155E3265C698200D0A9FB /* VideoStreamPlayer.m in Sources */,
 				A55F21C0264DE65000659CD9 /* Place.swift in Sources */,
 				A54C35B72658317E007678CD /* MissionViewModel.swift in Sources */,
 				A55F21CD264E0F8100659CD9 /* ActionList.swift in Sources */,
@@ -618,7 +618,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mavsdk-SwiftUI-Example/Preview Content\"";
-				DEVELOPMENT_TEAM = 6P29MLAXD8;
+				DEVELOPMENT_TEAM = JN72TL2C7V;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Mavsdk-SwiftUI-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -626,9 +626,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doug.Mavsdk-SwiftUI-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dou97183.Mavsdk-SwiftUI-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/douglas/Developer/Mavsdk-Swift-Example-App/Mavsdk-Swift-Example-App/Models/Video/RtspClient-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/dou97183/Developer/Mavsdk-SwiftUI-Example/Mavsdk-SwiftUI-Example/Helpers/Video/RtspClient-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -641,7 +641,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mavsdk-SwiftUI-Example/Preview Content\"";
-				DEVELOPMENT_TEAM = 6P29MLAXD8;
+				DEVELOPMENT_TEAM = JN72TL2C7V;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Mavsdk-SwiftUI-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -649,9 +649,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doug.Mavsdk-SwiftUI-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dou97183.Mavsdk-SwiftUI-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/douglas/Developer/Mavsdk-Swift-Example-App/Mavsdk-Swift-Example-App/Models/Video/RtspClient-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/dou97183/Developer/Mavsdk-SwiftUI-Example/Mavsdk-SwiftUI-Example/Helpers/Video/RtspClient-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

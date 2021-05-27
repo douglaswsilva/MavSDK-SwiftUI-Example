@@ -12,8 +12,8 @@ struct SiteScanView: View {
     
     var body: some View {
         List {
-            ButtonContent(text: "Subscribe to All Observers", action: siteScan.subscribeToAllSiteScan)
-            ButtonContent(text: "Run Preflight Checklist", action: siteScan.preflightCheckListQueue)
+            ButtonContent(text: "Subscribe to SS Observers", action: siteScan.subscribeToAllSiteScan)
+            ButtonContent(text: "Preflight Check + Takeoff", action: siteScan.preflightCheckListQueue)
         }
         .listStyle(PlainListStyle())
     }

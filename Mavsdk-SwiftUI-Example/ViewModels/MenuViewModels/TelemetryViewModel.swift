@@ -21,6 +21,7 @@ final class TelemetryViewModel: ObservableObject {
     
     func observeDroneTelemetry() {
         drone.telemetry.flightMode
+            .subscribeOn(MavScheduler)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (mode) in
                 self.flightMode = mode.toString()

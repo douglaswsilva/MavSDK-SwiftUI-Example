@@ -11,23 +11,24 @@ import Mavsdk
 class SiteScanMavsdk: ObservableObject {
     
     var drone: Drone = Mavsdk.sharedInstance.drone
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     // Vars for preflight check
     var aircraftHealth: Telemetry.Health?
-    
-    let TelemetryScheduler = ConcurrentDispatchQueueScheduler(qos: .background)
-    let CameraScheduler = ConcurrentDispatchQueueScheduler(qos: .unspecified)
     
     init() {
         addObservers()
     }
     
+    func disposeAll() {
+        disposeBag = DisposeBag()
+    }
+    
     // MARK: - Add Observers
     func addObservers() {
-        coreObservers()
-        telemetryObservers()
-        infoObservers()
+//        coreObservers()
+//        telemetryObservers()
+//        infoObservers()
         cameraObservers()
     }
     
@@ -68,7 +69,7 @@ class SiteScanMavsdk: ObservableObject {
         captureInfo()
         currentSettings()
         possibleSettingOptions()
-//        status()
+        status()
     }
 }
 
@@ -91,7 +92,6 @@ extension SiteScanMavsdk {
     func health() {
         drone.telemetry.health
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { health in
                 self.aircraftHealth = health
                 print("+DC+ telemetry health: \(health)")
@@ -104,7 +104,6 @@ extension SiteScanMavsdk {
     func position() {
         drone.telemetry.position
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { position in
                 print("+DC+ telemetry position: \(position)")
             }, onError: { error in
@@ -116,7 +115,6 @@ extension SiteScanMavsdk {
     func attitudeEuler() {
         drone.telemetry.attitudeEuler
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { attitudeEuler in
                 print("+DC+ telemetry attitudeEuler: \(attitudeEuler)")
             }, onError: { error in
@@ -128,7 +126,6 @@ extension SiteScanMavsdk {
     func home() {
         drone.telemetry.home
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { home in
                 print("+DC+ telemetry home: \(home)")
             }, onError: { error in
@@ -140,7 +137,6 @@ extension SiteScanMavsdk {
     func cameraAttitudeEuler() {
         drone.telemetry.cameraAttitudeEuler
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { cameraAttitudeEuler in
                 print("+DC+ telemetry cameraAttitudeEuler: \(cameraAttitudeEuler)")
             }, onError: { error in
@@ -152,7 +148,6 @@ extension SiteScanMavsdk {
     func gpsInfo() {
         drone.telemetry.gpsInfo
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { gpsInfo in
                 print("+DC+ telemetry gpsInfo: \(gpsInfo)")
             }, onError: { error in
@@ -164,7 +159,6 @@ extension SiteScanMavsdk {
     func rcStatus() {
         drone.telemetry.rcStatus
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { rcStatus in
                 print("+DC+ telemetry rcStatus: \(rcStatus)")
             }, onError: { error in
@@ -176,7 +170,6 @@ extension SiteScanMavsdk {
     func armed() {
         drone.telemetry.armed
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { armed in
                 print("+DC+ telemetry armed: \(armed)")
             }, onError: { error in
@@ -188,7 +181,6 @@ extension SiteScanMavsdk {
     func statusText() {
         drone.telemetry.statusText
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { statusText in
                 print("+DC+ telemetry statusText: \(statusText)")
             }, onError: { error in
@@ -200,7 +192,6 @@ extension SiteScanMavsdk {
     func positionVelocityNed() {
         drone.telemetry.positionVelocityNed
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { positionVelocityNed in
                 print("+DC+ telemetry positionVelocityNed: \(positionVelocityNed)")
             }, onError: { error in
@@ -211,8 +202,6 @@ extension SiteScanMavsdk {
     
     func flightMode() {
         drone.telemetry.flightMode
-            .distinctUntilChanged()
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ telemetry flightMode: \(value)")
             }, onError: { error in
@@ -223,8 +212,6 @@ extension SiteScanMavsdk {
     
     func battery() {
         drone.telemetry.battery
-            .distinctUntilChanged()
-            .subscribeOn(TelemetryScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ telemetry battery: \(value)")
             }, onError: { error in
@@ -283,8 +270,6 @@ extension SiteScanMavsdk {
     // Observers
     func information() {
         drone.camera.information
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera information: \(value)")
             }, onError: { error in
@@ -295,8 +280,6 @@ extension SiteScanMavsdk {
     
     func videoStreamInfo() {
         drone.camera.videoStreamInfo
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera videoStreamInfo: \(value)")
             }, onError: { error in
@@ -307,8 +290,6 @@ extension SiteScanMavsdk {
     
     func mode() {
         drone.camera.mode
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera mode: \(value)")
             }, onError: { error in
@@ -319,8 +300,6 @@ extension SiteScanMavsdk {
     
     func captureInfo() {
         drone.camera.captureInfo
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera captureInfo: \(value)")
             }, onError: { error in
@@ -331,8 +310,6 @@ extension SiteScanMavsdk {
     
     func currentSettings() {
         drone.camera.currentSettings
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera currentSettings: \(value)")
             }, onError: { error in
@@ -343,8 +320,6 @@ extension SiteScanMavsdk {
     
     func possibleSettingOptions() {
         drone.camera.possibleSettingOptions
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera possibleSettingOptions: \(value)")
             }, onError: { error in
@@ -355,8 +330,6 @@ extension SiteScanMavsdk {
     
     func status() {
         drone.camera.status
-            .distinctUntilChanged()
-            .subscribeOn(CameraScheduler)
             .subscribe(onNext: { value in
                 print("+DC+ camera status: \(value)")
             }, onError: { error in

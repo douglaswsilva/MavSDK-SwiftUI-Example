@@ -15,7 +15,7 @@ struct TelemetryDetailView: View {
     var body: some View {
         VStack {
             HStack {
-                TelemetryInfo(value: "\(telemetry.altitude)ft", title: "current altitude")
+                TelemetryInfo(value: "\(telemetry.altitude)m", title: "current altitude")
                 TelemetryInfo(value: "\(telemetry.battery)%", title: "battery level")
                 TelemetryInfo(value: "\(telemetry.photosTaken)", title: "images")
                 

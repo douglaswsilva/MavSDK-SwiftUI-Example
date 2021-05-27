@@ -14,7 +14,6 @@ struct MissionView: View {
     var body: some View {
         List(mission.actions, id: \.text) { action in
             ButtonContent(text: action.text, action: action.action)
-
         }
         .listStyle(PlainListStyle())
     }

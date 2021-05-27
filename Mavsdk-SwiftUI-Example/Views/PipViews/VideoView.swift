@@ -9,8 +9,8 @@ import SwiftUI
 
 struct VideoView: View {
     var body: some View {
-//        VideoPlayerView()
-        Rectangle()
+        VideoPlayerView() // Anotacao
+//        Rectangle().foregroundColor(.blue)
     }
 }
 

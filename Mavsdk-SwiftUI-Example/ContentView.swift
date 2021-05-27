@@ -18,15 +18,14 @@ struct ContentView: View {
                 
                 if isVideo {
                     MapView()
-                        .ignoresSafeArea(.all)
                 } else {
                     VideoView()
-                        .ignoresSafeArea(.all)
                 }
 
                 PipView(isVideo: $isVideo.animation())
                     .frame(width: 204, height: 180)
-                    .offset(x: -16, y: -104)
+                    .padding(.top, 32)
+                    .padding(.trailing, 16)
                 
                 VStack {
                     Spacer()
@@ -34,6 +33,7 @@ struct ContentView: View {
                         .padding()
                 }
             }
+            .ignoresSafeArea(.all)
         }
     }
 }
