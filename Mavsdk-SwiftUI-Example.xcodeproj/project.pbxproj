@@ -157,14 +157,6 @@
 			path = SiteScan;
 			sourceTree = "<group>";
 		};
-		A55F21AA264DE54C00659CD9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A5F70B93264DDDC20017AFC1 /* MainView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		A55F21B8264DE5F200659CD9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,10 +191,9 @@
 			children = (
 				A5F70B91264DDDC20017AFC1 /* Mavsdk_SwiftUI_ExampleApp.swift */,
 				C5C7B5C2267BD907000BABFF /* Mavsdk */,
-				C5C7B5BC267BD8BA000BABFF /* Screen Objects */,
+				C5C7B5BC267BD8BA000BABFF /* App */,
 				A54C35832656FDD3007678CD /* Helpers */,
 				A55F21B8264DE5F200659CD9 /* Models */,
-				A55F21AA264DE54C00659CD9 /* Views */,
 				A5F70B95264DDDC40017AFC1 /* Assets.xcassets */,
 				A5F70B9A264DDDC40017AFC1 /* Info.plist */,
 				A5F70B97264DDDC40017AFC1 /* Preview Content */,
@@ -236,16 +227,17 @@
 			path = "Mavsdk-SwiftUI-ExampleUITests";
 			sourceTree = "<group>";
 		};
-		C5C7B5BC267BD8BA000BABFF /* Screen Objects */ = {
+		C5C7B5BC267BD8BA000BABFF /* App */ = {
 			isa = PBXGroup;
 			children = (
+				A5F70B93264DDDC20017AFC1 /* MainView.swift */,
 				C5C7B5D9267BDB3E000BABFF /* Pip */,
 				C5C7B5D6267BDA9E000BABFF /* TelemetryDetail */,
 				C5C7B5D3267BDA6B000BABFF /* Map */,
 				C5C7B5C5267BD937000BABFF /* Menu */,
 				C5C7B5C1267BD8EE000BABFF /* Video */,
 			);
-			path = "Screen Objects";
+			path = App;
 			sourceTree = "<group>";
 		};
 		C5C7B5BD267BD8C1000BABFF /* Actions */ = {
