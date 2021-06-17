@@ -62,6 +62,9 @@
         av_dict_set(&opts, "rtsp_transport", "udp", 0);
     }
     
+    av_dict_set(&opts, "fflags", "nobuffer", 0);
+    av_dict_set(&opts, "flags", "low_delay", 0);
+    
     if (avformat_open_input(&formatCtx, [videoPath UTF8String], 0, &opts) !=0 ) {
         av_log(NULL, AV_LOG_ERROR, "Couldn't open file\n");
         goto initError;

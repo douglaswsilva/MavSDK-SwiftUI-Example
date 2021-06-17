@@ -151,6 +151,3 @@ struct SurveyMission {
         ]
     }
 }
-
-
-

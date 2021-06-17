@@ -19,7 +19,6 @@ final class MapViewModel: ObservableObject {
     }
     
     func observeDroneLocation() {
-
         Observable.combineLatest(drone.telemetry.attitudeEuler, drone.telemetry.position)
             .observeOn(MainScheduler.instance)
             .distinctUntilChanged({ (angle, position) in

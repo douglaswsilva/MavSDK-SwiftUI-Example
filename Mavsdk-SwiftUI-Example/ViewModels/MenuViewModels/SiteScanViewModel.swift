@@ -88,7 +88,14 @@ final class SiteScanViewModel: ObservableObject {
     func swipeToTakeOff() -> Completable {
         let setCurrentMissionItem = drone.mission.setCurrentMissionItem(index: Int32(0)).do(onSubscribed: { print("PreFli: setCurrentMissionItem") })
         let arm = drone.action.arm().do(onSubscribed: { print("PreFli: arm") })
-        let startMission = drone.mission.startMission().do(onSubscribed: { print("PreFli: startMission") })
+        let startMission = drone.mission.startMission()
+            .do(onError: { (error) in
+                print("PreFli: Error \(error)")
+            }, onCompleted: {
+                print("PreFli: Mission Started!")
+            }, onSubscribe: {
+                print("PreFli: Checking...")
+            })
         
         return Completable.concat([
             setCurrentMissionItem,

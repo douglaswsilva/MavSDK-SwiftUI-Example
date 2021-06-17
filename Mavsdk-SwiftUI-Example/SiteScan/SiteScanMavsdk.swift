@@ -20,7 +20,7 @@ class SiteScanMavsdk: ObservableObject {
         addObservers()
     }
     
-    // MARK: - Add Observers
+// MARK: - Add Observers
     func addObservers() {
         coreObservers()
         telemetryObservers()
@@ -73,7 +73,7 @@ class SiteScanMavsdk: ObservableObject {
 extension SiteScanMavsdk {
     func connectionState() {
         drone.core.connectionState
-            .distinctUntilChanged() // Anotacao: Do we want to distinct until changed?
+            .distinctUntilChanged()
             .subscribe(onNext: { (connectionState) in
                 print("+DC+ core connectionState: \(connectionState.isConnected)")
             }, onError: { error in

@@ -11,13 +11,16 @@ import Mavsdk
 import MavsdkServer
 import RxSwift
 
+// Convert UIView into SwiftUI.
 struct VideoPlayerView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         return PlayerUIView(frame: frame)
     }
     
-    func updateUIView(_ uiView: UIView, context: Context) {}
+    func updateUIView(_ uiView: UIView, context: Context) {
+        // Nothing to do here for now.
+    }
 }
 
 class PlayerUIView: UIView {
@@ -29,11 +32,7 @@ class PlayerUIView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .lightGray
        
-        if isSimulator {
-            fetchVideoStream()
-        } else {
-            addVideoFeed("rtsp://192.168.43.1:58554/stream")
-        }
+        fetchVideoStream()
     }
     
     func fetchVideoStream() {
@@ -41,6 +40,7 @@ class PlayerUIView: UIView {
             .take(1)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { value in
+                print("+DC+ videoStreamInfo \(value)")
                 if self.rtspView == nil {
                     self.addVideoFeed(value.settings.uri)
                 }
@@ -61,8 +61,7 @@ class PlayerUIView: UIView {
         rtspView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         rtspView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
 
-        self.rtspView.startPlaying(videoPath: newPath, usesTcp: isSimulator) // Anotacao: idk?
-//        self.rtspView.startPlaying(videoPath: "rtsp://192.168.43.1:58554/stream", usesTcp: false) // Anotacao: idk?
+        self.rtspView.startPlaying(videoPath: newPath, usesTcp: isSimulator)
     }
     
     required init?(coder: NSCoder) {

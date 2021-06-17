@@ -13,9 +13,15 @@ final class ActionViewModel: ObservableObject {
     let messageViewModel = MessageViewModel.shared
     let disposeBag = DisposeBag()
     
-    
-    
-    init() {
+    var actions: [Action] {
+        return [
+            Action(text: "Arm", action: armAction),
+            Action(text: "Disarm", action: disarmAction),
+            Action(text: "TakeOff", action: takeOffAction),
+            Action(text: "Land", action: landAction),
+            Action(text: "RTL", action: rtlAction),
+            Action(text: "Set RTL Altitude", action: setRTLAltitude)
+        ]
     }
     
     func armAction() {

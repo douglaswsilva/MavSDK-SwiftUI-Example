@@ -15,26 +15,26 @@
         "repositoryURL": "https://github.com/grpc/grpc-swift",
         "state": {
           "branch": null,
-          "revision": "9e464a75079928366aa7041769a271fac89271bf",
-          "version": "1.0.0"
+          "revision": "f258d1cd8e8fcc97ebfaaf397e569be3d3fa91d6",
+          "version": "1.1.0"
         }
       },
       {
         "package": "Mavsdk",
-        "repositoryURL": "https://github.com/mavlink/MAVSDK-Swift",
+        "repositoryURL": "https://github.com/esri/MAVSDK-Swift.git",
         "state": {
-          "branch": null,
-          "revision": "0dac52415d368b0bccb56c0a46f9635b32d05e15",
-          "version": "0.13.0"
+          "branch": "main",
+          "revision": "cd84f68a63f14f38821c61c3dd2c320da64899b7",
+          "version": null
         }
       },
       {
         "package": "MAVSDK-XCFramework",
-        "repositoryURL": "https://github.com/mavlink/MAVSDK-XCFramework",
+        "repositoryURL": "https://github.com/byuarus/MAVSDK-XCFramework",
         "state": {
           "branch": null,
-          "revision": "8c5fb3a00cac10cb777c146f70cd827328c593fe",
-          "version": "0.40.0"
+          "revision": "4eb7ec8af0728534d30fc82e7c3ce4b4af541dc4",
+          "version": "0.40.0-gac872140"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-extras.git",
         "state": {
           "branch": null,
-          "revision": "de1c80ad1fdff1ba772bcef6b392c3ef735f39a6",
-          "version": "1.8.0"
+          "revision": "b03d835bca80663f3172283f0fc8aaa73b03f1e9",
+          "version": "1.9.0"
         }
       },
       {

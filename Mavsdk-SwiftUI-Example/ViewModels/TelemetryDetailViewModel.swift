@@ -23,6 +23,7 @@ final class TelemetryDetailViewModel: ObservableObject {
     func observeDroneTelemetry() {
         drone.telemetry.position
             .observeOn(MainScheduler.instance)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { (position) in
                 self.altitude = Int(position.relativeAltitudeM)
             })
@@ -30,6 +31,7 @@ final class TelemetryDetailViewModel: ObservableObject {
         
         drone.telemetry.battery
             .observeOn(MainScheduler.instance)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { (info) in
                 self.battery = Int(info.remainingPercent * 100)
             })

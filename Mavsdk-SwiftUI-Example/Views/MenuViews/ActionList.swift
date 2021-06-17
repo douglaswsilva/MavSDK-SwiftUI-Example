@@ -11,13 +11,8 @@ struct ActionList: View {
     var action = ActionViewModel()
     
     var body: some View {
-        List {
-            ButtonContent(text: "Arm", action: action.armAction)
-            ButtonContent(text: "Disarm", action: action.disarmAction)
-            ButtonContent(text: "TakeOff", action: action.takeOffAction)
-            ButtonContent(text: "Land", action: action.landAction)
-            ButtonContent(text: "RTL", action: action.rtlAction)
-            ButtonContent(text: "Set RTL Altitude", action: action.setRTLAltitude)
+        List(action.actions, id: \.text) { action in
+            ButtonContent(text: action.text, action: action.action)
         }
         .listStyle(PlainListStyle())
     }
