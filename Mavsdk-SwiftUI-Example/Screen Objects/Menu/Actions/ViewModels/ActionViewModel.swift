@@ -24,6 +24,8 @@ final class ActionViewModel: ObservableObject {
         ]
     }
     
+    init() {}
+    
     func armAction() {
         drone.action.arm()
             .subscribe {

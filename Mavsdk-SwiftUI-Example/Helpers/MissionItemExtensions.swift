@@ -1,5 +1,5 @@
 //
-//  MissionItemExtension.swift
+//  MissionItemExtensions.swift
 //  Mavsdk-SwiftUI-Example
 //
 //  Created by Douglas Silva on 17/06/21.

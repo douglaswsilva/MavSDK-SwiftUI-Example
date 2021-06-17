@@ -1,5 +1,5 @@
 //
-//  Place.swift
+//  Location.swift
 //  Mavsdk-SwiftUI-Example
 //
 //  Created by Douglas on 13/05/21.

@@ -11,18 +11,6 @@ import Mavsdk
 import MavsdkServer
 import RxSwift
 
-// Convert UIView into SwiftUI.
-struct VideoPlayerView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        return PlayerUIView(frame: frame)
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {
-        // Nothing to do here for now.
-    }
-}
-
 class PlayerUIView: UIView {
     var rtspView: RTSPView!
     

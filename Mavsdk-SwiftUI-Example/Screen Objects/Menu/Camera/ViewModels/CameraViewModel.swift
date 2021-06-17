@@ -25,15 +25,9 @@ final class CameraViewModel: ObservableObject {
             Action(text: "List of Photos", action: getListOfPhotos),
             Action(text: "Format Storage", action: formatStorage),
             Action(text: "Start Video Streaming", action: startVideoStreaming),
-            Action(text: "Stop Video Streaming", action: stopVideoStreaming),
-            Action(text: "Subscribe Camera Mode", action: subscribeCameraMode),
-            Action(text: "Subscribe Camera Status", action: subscribeCameraStatus),
-            Action(text: "Subscribe Current Settings", action: subscribeCurrentSettings),
-            Action(text: "Subscribe Possible Settings", action: subscribePossibleSettings),
-            Action(text: "Subscribe Camera Info", action: subscribeCameraInfo)
+            Action(text: "Stop Video Streaming", action: stopVideoStreaming)
         ]
     }
-    
     
     init() {}
     
@@ -147,56 +141,6 @@ final class CameraViewModel: ObservableObject {
             } onError: { (error) in
                 self.messageViewModel.message = "Error Stopping Video Streaming"
             }
-            .disposed(by: disposeBag)
-    }
-    
-    func subscribeCameraMode() {
-        drone.camera.mode
-            .subscribe(onNext: { value in
-                print("+DC+ camera mode: \(value)")
-            }, onError: { error in
-                print("+DC+ camera mode error: \(String(describing: error))")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func subscribeCameraStatus() {
-        drone.camera.status
-            .subscribe(onNext: { value in
-                print("+DC+ camera status: \(value)")
-            }, onError: { error in
-                print("+DC+ camera status error: \(String(describing: error))")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func subscribeCurrentSettings() {
-        drone.camera.currentSettings
-            .subscribe(onNext: { value in
-                print("+DC+ camera current settings: \(value)")
-            }, onError: { error in
-                print("+DC+ camera current settings error: \(String(describing: error))")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func subscribePossibleSettings() {
-        drone.camera.possibleSettingOptions
-            .subscribe(onNext: { value in
-                print("+DC+ camera possible settings: \(value)")
-            }, onError: { error in
-                print("+DC+ camera possible settings error: \(String(describing: error))")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func subscribeCameraInfo() {
-        drone.telemetry.battery
-            .subscribe(onNext: { value in
-                print("+DC+ camera info: \(value)")
-            }, onError: { error in
-                print("+DC+ camera info error: \(String(describing: error))")
-            })
             .disposed(by: disposeBag)
     }
 }
